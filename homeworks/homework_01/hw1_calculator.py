@@ -12,7 +12,7 @@ def calculator(x, y, operator):
     '''
     try:
         x, y = float(x), float(y)
-    except (ValueError, TypeError):
+    except (ValueError, TypeError, AssertionError):
         return None
     if operator == "plus":
         return x + y
