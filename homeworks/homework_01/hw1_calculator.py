@@ -10,9 +10,9 @@ def calculator(x, y, operator):
     :param operator: 4 оператора: plus, minus, mult, divide
     :return: результат операции или None, если операция не выполнима
     '''
-    if type(y) is str:
+    if type(y) is not float:
         return None
-    if type(x) is str:
+    if type(x) is not float:
         return None
     if operator == 'plus':
         return x + y
