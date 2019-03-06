@@ -2,7 +2,7 @@
 # coding: utf-8
 
 
-def is_bracket_correct1(input_string):
+def is_bracket_correct(input_string):
     '''
     Метод проверяющий является ли поданная скобочная
      последовательность правильной (скобки открываются и закрываются)
