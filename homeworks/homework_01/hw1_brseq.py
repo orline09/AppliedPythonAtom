@@ -20,3 +20,4 @@ def is_bracket_correct(input_string):
     else:
             return False
     raise NotImplementedError
+    

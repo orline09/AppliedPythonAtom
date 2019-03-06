@@ -19,6 +19,4 @@ def reverse(number):
     else:
         return n2
     
-    
     raise NotImplementedError
-
