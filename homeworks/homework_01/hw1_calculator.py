@@ -10,27 +10,19 @@ def calculator(x, y, operator):
     :param operator: 4 оператора: plus, minus, mult, divide
     :return: результат операции или None, если операция не выполнима
     '''
+    try:
+        x, y = float(x), float(y)
+    except (ValueError, TypeError):
+        return None
     if operator == "plus":
-        try:
-            return x + y
-        except TypeError:
-            return None
+        return x + y
     if operator == "minus":
-        try:
-            return x - y
-        except TypeError:
-            return None
+        return x - y
     if operator == "mult":
-        try:
-            return x * y
-        except TypeError:
-            return None
+        return x * y
     if operator == "divide":
         if y != 0:
-            try:
-                return x / y
-            except TypeError:
-                return None
+            return x / y
         else:
             return None
     return None
