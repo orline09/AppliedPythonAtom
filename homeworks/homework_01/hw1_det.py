@@ -17,15 +17,15 @@ def calculate_determinant(list_of_lists):
         return False
     n = len(a)
     for i in range(n):
-        j = max(range(i,n), key=lambda k: abs(a[k][i]))
+        j = max(range(i, n), key=lambda kk: abs(a[k][i]))
         if i != j:
-            a[i],a[j] = a[j],a[i]
+            a[i], a[j] = a[j], a[i]
             res *= -1
         if a[i][i] == 0:
             return 0
         res *= a[i][i]
-        for j in range(i+1,n):
+        for j in range(i+1, n):
             b = a[j][i] / a[i][i]
-            a[j] = [a[j][k]-b*a[i][k] for k in range(n)]
-    return res                      
+            a[j] = [a[j][kk]-b*a[i][kk] for k in range(n)]
+    return res
     raise NotImplementedError

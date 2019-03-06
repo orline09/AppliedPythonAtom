@@ -10,13 +10,12 @@ def reverse(number):
         k = 1
         n1 = abs(n1)
     while n1 > 0:
-        digit = n1 % 10 
-        n1 = n1 // 10 
-        n2 = n2 * 10 
-        n2 = n2 + digit 
+        digit = n1 % 10
+        n1 = n1 // 10
+        n2 = n2 * 10
+        n2 = n2 + digit
     if k == 1:
         return -n2
     else:
         return n2
-    
     raise NotImplementedError
