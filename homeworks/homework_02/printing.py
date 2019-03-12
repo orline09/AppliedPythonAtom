@@ -1,5 +1,5 @@
 # modul for print file
-def print_file(list_of_lists: list, headers=True):
+def print_file(list_of_lists: list):
     # check format on true
     if len(list_of_lists) < 1:
         raise ValueError("Формат не валиден")
@@ -13,11 +13,10 @@ def print_file(list_of_lists: list, headers=True):
             current_length = max(len(str(j[i])), current_length)
         lengths.append(current_length)
     print("-" * (sum(lengths) + 5 * len(lengths) + 1))
-    if headers:
-        data_headers = list_of_lists.pop(0)
-        for i, j in enumerate(data_headers):
-            print("|  {:^{width}}  ".format(j, width=lengths[i]), end='')
-        print("|")
+    data_headers = list_of_lists.pop(0)
+    for i, j in enumerate(data_headers):
+        print("|  {:^{width}}  ".format(j, width=lengths[i]), end='')
+    print("|")
     for i in list_of_lists:
         for j, k in enumerate(i):
             output = "|  {:" + (">" if j == len(i) - 1 else "<") + "{width}}  "
