@@ -1,5 +1,5 @@
 # utf8, utf16, cp1251
-def char_encoding (filename: str):
+def char_encoding(filename: str):
     if _is_utf16(filename):
         return 'utf16'
     elif _is_utf8(filename):
@@ -24,4 +24,3 @@ def _is_utf16(filename: str):
     except UnicodeError:
         return False
     return True
-
