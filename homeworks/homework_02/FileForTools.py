@@ -1,5 +1,7 @@
 # utf8, utf16, cp1251
 # return type of encoding
+
+
 def char_encoding(filename: str):
     if _is_utf16(filename):
         return 'utf16'
@@ -9,6 +11,8 @@ def char_encoding(filename: str):
         return 'cp1251'
 
 # try open
+
+
 def _is_utf8(filename: str):
     try:
         with open(filename, encoding='utf8') as f:
