@@ -3,20 +3,15 @@
 
 
 from homeworks.homework_02.heap import MaxHeap
-# from homeworks.homework_02.fastmerger import FastSortedListMerger
+from homeworks.homework_02.fastmerger import FastSortedListMerger
 
 
 class VKPoster:
 
     def __init__(self):
         self.post = {}
-        # посты c юзерами
         self.userPost = {}
-        # постами
         self.subs = {}
-        # подписки
-        self.watches = {}
-        # просмотры
         raise NotImplementedError
 
     def user_posted_post(self, user_id: int, post_id: int):
@@ -72,13 +67,18 @@ class VKPoster:
         :return: Список из post_id размером К из свежих постов в
         ленте пользователя. list
         '''
-        # lets use fastmerger, but no, in future
-        post = list(self.post.keys())
-        post.sort(reverse=True)
-        recent_posts = [post_id for post_id in post
-                        if self.post.get(post_id)[0] in
-                        self.subs.get(user_id)]
-        return recent_posts[:k]
+        fast = [self.userPost.get(i) for subs in
+                self.sub.get(user_id) if subs in
+                self.userPost.keys()]
+        return FastSortedListMerger.merge_first_k(fast, k)
+
+        # not use FastSortedListMerger
+        # post = list(self.post.keys())
+        # post.sort(reverse=True)
+        # recent_posts = [post_id for post_id in post
+        #                if self.post.get(post_id)[0] in
+        #                self.subs.get(user_id)]
+        # return recent_posts[:k]
 
     def get_most_popular_posts(self, k: int) -> list:
         '''
