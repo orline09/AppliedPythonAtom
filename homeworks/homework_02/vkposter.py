@@ -12,7 +12,6 @@ class VKPoster:
         self.post = {}
         self.userPost = {}
         self.subs = {}
-        raise NotImplementedError
 
     def user_posted_post(self, user_id: int, post_id: int):
         '''
@@ -22,14 +21,13 @@ class VKPoster:
         :param post_id: id поста. Число.
         :return: ничего
         '''
-        if user_id not in self.userPost.keys():
-            self.userPost[user_id] = [post_id]
-            # вводим в словарь юзера и пост по ключу и значению
-        elif post_id not in self.userPost(user_id):
-            self.userPost.get(user_id).append(post_id)
-            # добавили новый пост к юзеру
         if post_id not in self.post.keys():
             self.post[post_id] = [user_id, []]
+        if user_id not in self.userPost.keys():
+            self.userPost[user_id] = [post_id]
+        else:
+            if post_id not in self.userPost.get(user_id):
+                self.userPost.get(user_id).append(post_id)
 
     def user_read_post(self, user_id: int, post_id: int):
         '''
@@ -52,13 +50,12 @@ class VKPoster:
         :param followee_user_id: id пользователя. Число.
         :return: ничего
         '''
-        if follower_user_id not in self.sub.keys():
-            self.sub[follower_user_id] = [followee_user_id]
-            # add to sub
+        if follower_user_id not in self.subs.keys():
+            self.subs[follower_user_id] = [followee_user_id]
         else:
-            self.sub[follower_user_id].append(follower_user_id)
+            self.subs.get(follower_user_id).append(followee_user_id)
 
-    def get_recent_posts(self, user_id: int, k: int)-> list:
+    def get_recent_posts(self, user_id: int, k: int) -> list:
         '''
         Метод который вызывается когда пользователь user_id
         запрашивает k свежих постов людей на которых он подписан.
@@ -67,18 +64,10 @@ class VKPoster:
         :return: Список из post_id размером К из свежих постов в
         ленте пользователя. list
         '''
-        fast = [self.userPost.get(i) for subs in
-                self.sub.get(user_id) if subs in
+        fast = [self.userPost.get(sb) for sb in
+                self.subs.get(user_id) if sb in
                 self.userPost.keys()]
         return FastSortedListMerger.merge_first_k(fast, k)
-
-        # not use FastSortedListMerger
-        # post = list(self.post.keys())
-        # post.sort(reverse=True)
-        # recent_posts = [post_id for post_id in post
-        #                if self.post.get(post_id)[0] in
-        #                self.subs.get(user_id)]
-        # return recent_posts[:k]
 
     def get_most_popular_posts(self, k: int) -> list:
         '''
@@ -88,7 +77,6 @@ class VKPoster:
         необходимо вывести. Число.
         :return: Список из post_id размером К из популярных постов. list
         '''
-        # lets use MaxHeap
         h = MaxHeap([(len(self.post.get(i)[1]), i)
                      for i in list(self.post.keys())])
         return [h.extract_maximum()[1] for i in range(k)]
