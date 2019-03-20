@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
+# сложна, оставлю на реализацию после первого дедлайна
 
 
 class LRUCacheDecorator:
