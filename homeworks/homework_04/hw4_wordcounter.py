@@ -36,4 +36,4 @@ def count_dict(path_to_dir, dict_one, filename):
     dict_one['total'] += k
     return
 
-#wow, its work!
+# wow, its work!
