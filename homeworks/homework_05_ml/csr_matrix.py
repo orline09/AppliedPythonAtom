@@ -18,7 +18,6 @@ class CSRMatrix:
             where data, row_ind and col_ind satisfy the relationship:
             a[row_ind[k], col_ind[k]] = data[k]
         """
-        self.shape = init_matrix.shape
         self.A = np.array([])
         self.IA = np.array([0])
         self.JA = np.array([])
