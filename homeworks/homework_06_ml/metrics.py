@@ -39,4 +39,3 @@ def r2_score(y_true, y_hat):
     squared_error_y_mean = np.sum((y_true - y_mean_line) ** 2)
     error = 1 - squared_error_regr / squared_error_y_mean
     return error
-
