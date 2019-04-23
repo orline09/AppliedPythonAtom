@@ -24,7 +24,7 @@ class LinearRegression:
         assert regulatization in ("L1", "L2", None)
         self.regularizarion = regulatization
 
-    def fit(self, X_train, y_train, iterations = 1000, accur_step = 1e-6):
+    def fit(self, X_train, y_train, iterations=1000, accur_step=1e-6):
         """
         Fit model using gradient descent method
         :param X_train: training data
