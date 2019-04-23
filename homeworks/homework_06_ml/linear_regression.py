@@ -24,30 +24,28 @@ class LinearRegression:
         assert regulatization in ("L1", "L2", None)
         self.regularizarion = regulatization
 
-    def fit(self, X_train, y_train):
+    def fit(self, X_train, y_train, iterations = 1000, accur_step = 1e-6):
         """
         Fit model using gradient descent method
         :param X_train: training data
         :param y_train: target values for training data
         :return: None
         """
-        iterations = 2019
-        accur_step = 0.001
         self.fitted = True
-        N, M = X_train.shape
+        n, m = X_train.shape
         first_step = np.inf
-        self.weights = np.random.randn(M) / np.sqrt(M)
+        self.weights = np.random.randn(m) / np.sqrt(n)
         for i in range(iterations):
             if self.regularizarion == 'L1':
-                W = self.alpha * np.ones(M) / 2
-                W[0] = 0
+                w = self.alpha * np.ones(M) / 2
+                w[0] = 0
             if self.regularizarion == 'L2':
-                W = self.alpha * self.weights
-                W[0] = 0
+                w = self.alpha * self.weights
+                w[0] = 0
             if self.regularizarion is None:
-                W = 0
+                w = 0
             prediction = self.predict(X_train)
-            self.weights -= (2 / N) * self.lambd * (X_train.T.dot((prediction - y_train)) + W)
+            self.weights -= (2 / n) * self.lambd * (X_train.T.dot((prediction - y_train)) + w)
             check = mse(y_train, prediction)
             if np.abs(first_step - check) < accur_step:
                 break
