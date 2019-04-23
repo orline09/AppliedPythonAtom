@@ -44,7 +44,7 @@ class LinearRegression:
             if self.regularizarion == 'L2':
                 W = self.alpha * self.weights
                 W[0] = 0
-            if self.regularizarion == None:
+            if self.regularizarion is None:
                 W = 0
             prediction = self.predict(X_train)
             self.weights -= (2 / N) * self.lambd * (X_train.T.dot((prediction - y_train)) + W)
@@ -53,14 +53,13 @@ class LinearRegression:
                 break
             return self
 
-
     def predict(self, X_test):
         """
         Predict using model.
         :param X_test: test data for predict in
         :return: y_test: predicted values
         """
-        if self.fitted == True:
+        if self.fitted is True:
             if all(X_test[:, 0] == 1):
                 return X_test.dot(self.weights)
             else:
@@ -68,11 +67,10 @@ class LinearRegression:
                 X_test = np.hstack([ones, X_test])
                 return X_test.dot(self.weights)
 
-
     def get_weights(self):
         """
         Get weights from fitted linear model
         :return: weights array
         """
-        if self.fitted == True:
+        if self.fitted is True:
             return self.weights
