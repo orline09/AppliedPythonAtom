@@ -70,7 +70,7 @@ def roc_auc(y_true, y_pred):
     """
     tpr = recall(y_true, y_pred)
     Leng = len([i for i, j in zip(y_pred, y_true) if i[0] == 1 and j[0] == 0])
-    count = len([i for i,x in enumerate(y_true) if x == 0])
+    count = len([i for i, x in enumerate(y_true) if x == 0])
     fpr = Leng / count
     loss = (1 + tpr - fpr) / 2
     return loss
